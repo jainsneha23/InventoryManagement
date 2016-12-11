@@ -7,6 +7,14 @@ var Product = {
   init: function() {
     this.bindListeners();
     this.getList();
+    $.ajaxSetup({
+      beforeSend: function() {
+        $('#ajaxLoader').show();
+      },
+      complete: function() {
+        $('#ajaxLoader').hide();
+      }
+    });
   },
   bindListeners: function() {
     var self = this;
@@ -18,9 +26,7 @@ var Product = {
     $('#productList').on('click', '.delete', function(evt) {
       evt.preventDefault();
       var target = $(evt.target);
-      $('#ajaxLoader').show();
       $.post(url + '/product/delete/' + target.attr('data-id'), function() {
-        $('#ajaxLoader').hide();
         self.getList();
       });
     });
@@ -34,7 +40,7 @@ var Product = {
       $('#productModal select:eq(0)').val(row.find('td:eq(2)').text().toLowerCase());
       $('#productModal select:eq(1)').val(row.find('td:eq(3)').text().toLowerCase());
       $('#productModal textarea').val(row.find('td:eq(4)').text());
-      $('#productModal').attr('data-id',row.find('td:eq(0)').text());
+      $('#productModal').attr('data-id', row.find('td:eq(0)').text());
       $('#productModal .buttongroup button[type=submit]').text('Update');
     });
     $('.buttongroup button').on('click', function(evt) {
@@ -43,16 +49,12 @@ var Product = {
       if (target.text() === 'Cancel') {
         self.closeModal();
       } else if (target.parents('#productModal').attr('type') === 'addProduct') {
-        $('#ajaxLoader').show();
         $.post(url + '/product/create/?' + target.parents('form').serialize(), function() {
-          $('#ajaxLoader').hide();
           self.closeModal();
           self.getList();
         });
       } else if (target.parents('#productModal').attr('type') === 'editProduct') {
-        $('#ajaxLoader').show();
-        $.post(url + '/product/update/' + target.parents('#productModal').attr('data-id'), target.parents('form').serialize() ,function() {
-          $('#ajaxLoader').hide();
+        $.post(url + '/product/update/' + target.parents('#productModal').attr('data-id'), target.parents('form').serialize(), function() {
           self.closeModal();
           self.getList();
         });
@@ -60,9 +62,7 @@ var Product = {
     });
   },
   getList: function() {
-    $('#ajaxLoader').show();
     $.get(url + '/product', function(data) {
-      $('#ajaxLoader').hide();
       $('#productList tr:nth-child(n+2)').remove();
       data.forEach(function(item) {
         var row = '';
