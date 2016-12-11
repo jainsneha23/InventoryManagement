@@ -1,28 +1,30 @@
 import DBQuery from '../utils/DBQuery';
 
-class Inventory {
+class Dealer {
   constructor() {
-    this.table = 'product_master';
+    this.table = 'dealer';
     this.query = new DBQuery();
   }
   insert(dbCon, data, callback) {
     this.query.insert(dbCon, this.table, data, callback);
   }
   deleteRow(dbCon, data, callback) {
-    this.query.deleteRow(dbCon, this.table, 'item_id', data, callback);
+    this.query.deleteRow(dbCon, this.table, 'dealer_id', data, callback);
   }
   update(dbCon, data, callback) {
     this.query.update(dbCon, {
       table: this.table,
-      query: 'name = ?,quality= ?, description=?, unit= ?',
-      uid: 'item_id',
-      data: [data.name, data.quality, data.description, data.unit, data.item_id]
+      query: 'name = ?,address= ?, city=?, phone= ?, email=?',
+      uid: 'dealer_id',
+      data: [data.name, data.address, data.city, data.phone, data.email,data.dealer_id]
     }, callback);
   }
   list(dbCon, callback) {
-    this.query.list(dbCon, this.table, callback);
+    this.query.list(dbCon, this.table,callback);
   }
 }
 
 
-export default Inventory;
+export default Dealer;
+
+

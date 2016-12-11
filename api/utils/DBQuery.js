@@ -6,9 +6,8 @@ class DBQuery {
   deleteRow(dbCon, table, deleteby, data, callback) {
     dbCon.query(`DELETE FROM ${table} WHERE ${deleteby} = ?`, data, callback);
   }
-  update(dbCon, table, data, callback) {
-    const query = [data.name, data.quality, data.description, data.unit, data.item_id];
-    dbCon.query(`UPDATE ${table} SET name = ?,quality= ?, description=?, unit= ? Where item_id = ?`, query, callback);
+  update(dbCon, params, callback) {
+    dbCon.query(`UPDATE ${params.table} SET ${params.query} Where ${params.uid} = ?`, params.data, callback);
   }
   list(dbCon, table,callback) {
     dbCon.query(`SELECT * FROM ${table}`, callback);
