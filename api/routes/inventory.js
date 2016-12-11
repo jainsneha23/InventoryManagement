@@ -40,6 +40,17 @@ class Inventory {
         res.send(result);
       });
     });
+
+    //get product by id
+    app.get('/product/:id', function(req, res) {
+      var data = req.params.id;
+      service.getbyid(dbCon, data, function(err, result) {
+        if (err) {
+          res.send(`Something went wrong ${err}`, 500);
+        }
+        res.send(result);
+      });
+    });
   }
 
 }

@@ -40,6 +40,16 @@ class Customer {
         res.send(result);
       });
     });
+    //get customer by id
+    app.get('/customer/:id', function(req, res) {
+      var data = req.params.id;
+      service.getbyid(dbCon, data, function(err, result) {
+        if (err) {
+          res.send(`Something went wrong ${err}`, 500);
+        }
+        res.send(result);
+      });
+    });
   }
 
 }

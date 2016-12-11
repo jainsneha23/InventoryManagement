@@ -16,15 +16,16 @@ class Dealer {
       table: this.table,
       query: 'name = ?,address= ?, city=?, phone= ?, email=?',
       uid: 'dealer_id',
-      data: [data.name, data.address, data.city, data.phone, data.email,data.dealer_id]
+      data: [data.name, data.address, data.city, data.phone, data.email, data.dealer_id]
     }, callback);
   }
   list(dbCon, callback) {
-    this.query.list(dbCon, this.table,callback);
+    this.query.list(dbCon, this.table, callback);
+  }
+  getbyid(dbCon, data, callback) {
+    this.query.getbyid(dbCon, this.table, 'dealer_id', data, callback);
   }
 }
 
 
 export default Dealer;
-
-

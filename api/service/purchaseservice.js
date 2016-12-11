@@ -16,15 +16,16 @@ class Purchase {
       table: this.table,
       query: 'dealer_id = ?,item_id= ?, date=?, quantity= ?, rate=?, total=?,description=?',
       uid: 'p_id',
-      data: [data.dealer_id, data.item_id, data.date, data.quantity, data.rate,data.total,data.description,data.p_id]
+      data: [data.dealer_id, data.item_id, data.date, data.quantity, data.rate, data.total, data.description, data.p_id]
     }, callback);
   }
   list(dbCon, callback) {
-    this.query.list(dbCon, this.table,callback);
+    this.query.list(dbCon, this.table, callback);
+  }
+  getbyid(dbCon, data, callback) {
+    this.query.getbyid(dbCon, this.table, 'p_id', data, callback);
   }
 }
 
 
 export default Purchase;
-
-

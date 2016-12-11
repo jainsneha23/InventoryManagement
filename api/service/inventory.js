@@ -22,6 +22,9 @@ class Inventory {
   list(dbCon, callback) {
     this.query.list(dbCon, this.table, callback);
   }
+  getbyid(dbCon, data, callback) {
+    this.query.getbyid(dbCon, this.table, 'item_id', data, callback);
+  }
 }
 
 
