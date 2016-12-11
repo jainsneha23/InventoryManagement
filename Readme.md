@@ -1,1 +1,1 @@
-Sales Repository
+Sales application for businesses
