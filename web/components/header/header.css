@@ -7,6 +7,10 @@ header .logo, header .profile {
   display: inline-block;
   vertical-align: middle;
 }
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}
 
 .logo div:first-child {
   font-size: large;
@@ -66,11 +70,18 @@ nav {
 
 nav li {
   display: inline-block;
-  padding: 10px;
   cursor: pointer;
 }
 
-nav li.active {
+nav li a{
+  display: block;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+nav li.active a{
     color: #75a64f;
     background: #fff;
-}
