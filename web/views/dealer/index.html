@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Inventory List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <link rel="stylesheet" type="text/css" href="/web/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="/web/styles/form.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/header/header.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/footer/footer.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/spinner/spinner.css">
+  <link rel="stylesheet" type="text/css" href="/web/views/dealer/index.css">
+  <script type="text/javascript" src="/web/scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/web/views/dealer/index.js"></script>
+</head>
+
+<body>
+  {{/web/components/header/header.html}}
+  <section>
+    <button id="addProduct">Add Dealer</button>
+    {{/web/components/spinner/spinner.html}}
+    <div class="modal" id="dealerModal">
+      <form>
+        <div>
+          <label><span>Name</span>
+            <input type="text" name="name" />
+          </label>
+          <label><span>Phone</span>
+            <input type="text" name="phone" />
+          </label>
+          <label><span>Email</span>
+            <input type="text" name="email" />
+          </label>
+          <label><span>City</span>
+            <input type="text" name="city" />
+          </label>
+          <label><span>Address</span>
+            <textarea name="address" resizable="false" col="5"></textarea>
+          </label>
+        </div>
+        <div class="buttongroup">
+          <button type="button">Cancel</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <table id="dealerList">
+      <tr>
+        <th>Dealer ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </table>
+  </section>
+  {{/web/components/footer/footer.html}}
+</body>
+
+</html>
