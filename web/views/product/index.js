@@ -1,4 +1,4 @@
-/* global $, url */
+/* global $ */
 $(function() {
   Product.init();
 });
@@ -71,7 +71,7 @@ var Product = {
         row += '<td>' + item.quality + '</td>';
         row += '<td>' + item.unit + '</td>';
         row += '<td>' + item.description + '</td>';
-        row += '<td><button class="edit">Edit</button><button class="delete" data-id="' + item.item_id + '">Delete</button></td>';
+        row += '<td class="center"><button class="edit"></button><button class="delete" data-id="' + item.item_id + '"></button></td>';
         $('#productList').append('<tr>' + row + '</tr>');
       });
     });

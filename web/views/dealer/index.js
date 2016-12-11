@@ -1,4 +1,4 @@
-/* global $, url */
+/* global $ */
 $(function() {
   Dealer.init();
 });
@@ -72,7 +72,7 @@ var Dealer = {
         row += '<td>' + item.email + '</td>';
         row += '<td>' + item.city + '</td>';
         row += '<td>' + item.address + '</td>';
-        row += '<td><button class="edit">Edit</button><button class="delete" data-id="' + item.dealer_id + '">Delete</button></td>';
+        row += '<td class="center"><button class="edit"></button><button class="delete" data-id="' + item.dealer_id + '"></button></td>';
         $('#dealerList').append('<tr>' + row + '</tr>');
       });
     });
