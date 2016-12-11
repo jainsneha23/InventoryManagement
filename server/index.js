@@ -15,6 +15,7 @@ const app = express();
 const dbCon = dbConnection();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req,res,next) => {
   config.headers.forEach(header => res.setHeader(header.key, header.value));
   next();
