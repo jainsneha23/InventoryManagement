@@ -2,10 +2,10 @@
   "name": "inventory-management",
   "version": "1.0.0",
   "description": "inventory,sales,reports,stock,bill",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "BABEL_DISABLE_CACHE=1 ./node_modules/.bin/babel-node server/index.js &",
+    "start": "node index.js &",
     "dev-server": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"

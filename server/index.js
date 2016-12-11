@@ -18,10 +18,25 @@ app.get('/views/*', (req, res) => {
 
 app.use('/web', express.static('web'));
 
-app.listen(port, ip, (err) => {
+app.use((req, res) => {
+  res.send('Invalid request', 404);
+});
+
+app.use((err, req, res) => {
+  res.send('Something went wrong', 500);
+});
+
+process.on('uncaughtException', (err) => {
+  console.log('Uncaught Exception Error: ',err);
+});
+
+const server = app.listen(port, ip, (err) => {
   if (err) {
     console.log(err);
   } else {
     console.log(`Server listening on port: ${port}`);
   }
 });
+
+export default server;
+
