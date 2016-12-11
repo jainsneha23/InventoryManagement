@@ -1,1 +1,1 @@
-Sales Repo
+Sales Repository
