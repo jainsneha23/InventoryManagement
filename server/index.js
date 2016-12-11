@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 import dbConnection from '../api/sp-node-mysql/app.js';
-import Inventory from '../api/routes/inventory';
+import Routes from '../api/routes';
 import template from './template';
 import config from './config';
 
@@ -16,7 +16,7 @@ const dbCon = dbConnection();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   config.headers.forEach(header => res.setHeader(header.key, header.value));
   next();
 });
@@ -25,10 +25,10 @@ app.get('/', (req, res) => {
   res.send(template.compile(path.join(__dirname, '../web/index.html')));
 });
 
-Inventory.insertRoutes(app, dbCon);
+Routes.insertRoutes(app, dbCon);
 
 app.get('/views/*', (req, res) => {
-  res.send(template.compile(path.join(__dirname,`../web/${req.url}/index.html`)));
+  res.send(template.compile(path.join(__dirname, `../web/${req.url}/index.html`)));
 });
 
 app.use('/web', express.static('web'));
@@ -42,7 +42,7 @@ app.use((err, req, res) => {
 });
 
 process.on('uncaughtException', (err) => {
-  console.log('Uncaught Exception Error: ',err);
+  console.log('Uncaught Exception Error: ', err);
 });
 
 const server = app.listen(port, ip, (err) => {
@@ -54,4 +54,3 @@ const server = app.listen(port, ip, (err) => {
 });
 
 export default server;
-
