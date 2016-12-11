@@ -5,8 +5,6 @@ $(function() {
 
 var customer = {
   init: function() {
-    this.bindListeners();
-    this.getList();
     $.ajaxSetup({
       beforeSend: function() {
         $('#ajaxLoader').show();
@@ -15,6 +13,8 @@ var customer = {
         $('#ajaxLoader').hide();
       }
     });
+    this.bindListeners();
+    this.getList();
   },
   bindListeners: function() {
     var self = this;
