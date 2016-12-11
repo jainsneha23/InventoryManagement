@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  
+/* global $ */
+var url = 'http://c988c9ed.ngrok.io';
+$(function() {
+  $('nav ul li').each(function(i, li){
+    var path = $(li).attr('data-url');
+    if(window.location.pathname.indexOf(path) >= 0)
+      $(li).addClass('active');
+  });
+});
+
+</script>
+<header>
+  <div class="logo">
+    <div>M/S Ishwar Chandra Jain</div>
+    <div>Sales and Reports</div>
+  </div>
+  <div class="profile">
+    <div>User</div>
+    <ul>
+      <li>Profile</li>
+      <li>Log Out</li>
+    </ul>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li data-url="inventory" href="/views/inventory-list">Inventory</li>
+    <li data-url="invoice" href="/views/invoice">Bill</li>
+    <li data-url="report" href="/views/report">Reports</li>
+  </ul>
+</nav>

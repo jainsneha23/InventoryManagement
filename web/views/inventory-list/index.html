@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Inventory List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <link rel="stylesheet" type="text/css" href="/web/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="/web/styles/form.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/header/header.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/footer/footer.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/spinner/spinner.css">
+  <link rel="stylesheet" type="text/css" href="/web/views/inventory-list/index.css">
+  <script type="text/javascript" src="/web/scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/web/views/inventory-list/index.js"></script>
+</head>
+
+<body>
+  {{/web/components/header/header.html}}
+  <section>
+    <button id="addProduct">Add Product</button>
+    {{/web/components/spinner/spinner.html}}
+    <div class="modal" id="productModal">
+      <form>
+        <div>
+          <label><span>Name</span>
+            <input type="text" name="name" />
+          </label>
+          <label><span>Quality</span>
+            <select name="quality">
+              <option>---</option>
+              <option val="low">Low</option>
+              <option val="medium">Medium</option>
+              <option val="high">High</option>
+            </select>
+          </label>
+          <label><span>Unit</span>
+            <select name="unit">
+              <option>---</option>
+              <option val="bag">Bag</option>
+              <option val="kg">Kg</option>
+              <option val="number">Number</option>
+            </select>
+          </label>
+          <label><span>Description</span>
+            <textarea name="description" resizable="false" col="5"></textarea>
+          </label>
+        </div>
+        <div class="buttongroup">
+          <button type="button">Cancel</button>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <table id="productList">
+      <tr>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Quality</th>
+        <th>Unit</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+  </section>
+  {{/web/components/footer/footer.html}}
+</body>
+
+</html>

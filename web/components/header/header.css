@@ -1,0 +1,76 @@
+header {
+  background: #3a3f41;
+  color: white;
+  padding: 16px;
+}
+header .logo, header .profile {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo div:first-child {
+  font-size: large;
+  font-variant: small-caps;
+}
+
+.logo div:last-child {
+  font-size: 12px;
+}
+
+header .logo {
+  width: calc(100% - 80px);
+}
+
+header .profile {
+  width: 70px;
+  position: relative;
+}
+
+header .profile div:first-child {
+  border-bottom: 4px solid transparent;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+header .profile ul {
+  position: absolute;
+  background: #1f2124;
+  display: none;
+}
+
+header .profile ul li {
+  padding: 10px;
+  min-width:  50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+header .profile ul li + li {
+  border-top: 1px solid #fff;
+}
+
+header .profile:hover div:first-child{
+  border-color: #fff;
+}
+
+header .profile:hover ul{
+  display: block;
+}
+
+nav {
+  background: #75a64f;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+nav li.active {
+    color: #75a64f;
+    background: #fff;
+}
