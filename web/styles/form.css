@@ -19,7 +19,7 @@ th, td {
   border: 1px solid #ccc;
   padding: 5px;
 }
-td.center{
+.center{
   text-align:center;
 }
 
