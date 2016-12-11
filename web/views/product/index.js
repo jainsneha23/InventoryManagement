@@ -26,7 +26,7 @@ var Product = {
     $('#productList').on('click', '.delete', function(evt) {
       evt.preventDefault();
       var target = $(evt.target);
-      $.post('product/delete/' + target.attr('data-id'), function() {
+      $.post('/product/delete/' + target.attr('data-id'), function() {
         self.getList();
       });
     });
@@ -49,12 +49,12 @@ var Product = {
       if (target.text() === 'Cancel') {
         self.closeModal();
       } else if (target.parents('#productModal').attr('type') === 'addProduct') {
-        $.post('product/create/?' + target.parents('form').serialize(), function() {
+        $.post('/product/create/?' + target.parents('form').serialize(), function() {
           self.closeModal();
           self.getList();
         });
       } else if (target.parents('#productModal').attr('type') === 'editProduct') {
-        $.post('product/update/' + target.parents('#productModal').attr('data-id'), target.parents('form').serialize(), function() {
+        $.post('/product/update/' + target.parents('#productModal').attr('data-id'), target.parents('form').serialize(), function() {
           self.closeModal();
           self.getList();
         });
@@ -62,7 +62,7 @@ var Product = {
     });
   },
   getList: function() {
-    $.get('product', function(data) {
+    $.get('/product', function(data) {
       $('#productList tr:nth-child(n+2)').remove();
       data.forEach(function(item) {
         var row = '';
