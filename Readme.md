@@ -1,1 +1,1 @@
-Sales Repository for inventory 
+Sales Repository
