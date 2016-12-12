@@ -4,6 +4,7 @@ import Customer from './customer';
 import Purchase from './purchase';
 import Sales from './sales';
 import Invoice from './invoice';
+import Stock from './stock';
 
 class Routes {
   static insertRoutes(app, dbCon) {
@@ -13,6 +14,7 @@ class Routes {
     Purchase.insertRoutes(app, dbCon);
     Sales.insertRoutes(app, dbCon);
     Invoice.insertRoutes(app, dbCon);
+    Stock.insertRoutes(app, dbCon);
   }
 }
 
