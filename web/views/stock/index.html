@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Inventory List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <link rel="stylesheet" type="text/css" href="/web/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="/web/styles/form.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/header/header.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/footer/footer.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/spinner/spinner.css">
+  <link rel="stylesheet" type="text/css" href="/web/views/stock/index.css">
+  <script type="text/javascript" src="/web/scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/web/views/stock/index.js"></script>
+</head>
+
+<body>
+  {{/web/components/header/header.html}}
+  <section>
+    {{/web/components/spinner/spinner.html}}
+    <table id="stockList">
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+      </tr>
+    </table>
+  </section>
+  {{/web/components/footer/footer.html}}
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 import StockService from '../service/stockservice';
+import StockAggregator from '../aggregator/stock';
 
 class Stock {
 
@@ -40,7 +41,7 @@ class Stock {
     });
     //get list of all product
     app.get('/stock', function(req, res) {
-      service.list(dbCon, function(err, result) {
+      StockAggregator.list(dbCon, function(err, result) {
         if (err) {
           res.send('Something went wrong', 500);
         }
