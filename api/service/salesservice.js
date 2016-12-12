@@ -1,0 +1,31 @@
+import DBQuery from '../utils/DBQuery';
+
+class Sales {
+  constructor() {
+    this.table = 'sales';
+    this.query = new DBQuery();
+  }
+  insert(dbCon, data, callback) {
+    this.query.insert(dbCon, this.table, data, callback);
+  }
+  deleteRow(dbCon, data, callback) {
+    this.query.deleteRow(dbCon, this.table, 'sales_id', data, callback);
+  }
+  update(dbCon, data, callback) {
+    this.query.update(dbCon, {
+      table: this.table,
+      query: 'item_id = ?,quantity= ?, rate=?, total_amount= ?, invoice_id=?, date=?,description=?,tax_rate=?,tax_amount=?,gross_amount=?',
+      uid: 'sales_id',
+      data: [data.item_id, data.quantity, data.rate, data.total_amount, data.invoice_id, data.date, data.description,data.tax_rate,data.tax_amount,data.gross_amount, data.sales_id]
+    }, callback);
+  }
+  list(dbCon, callback) {
+    this.query.list(dbCon, this.table, callback);
+  }
+  getbyid(dbCon, data, callback) {
+    this.query.getbyid(dbCon, this.table, 'sales_id', data, callback);
+  }
+}
+
+
+export default Sales;
