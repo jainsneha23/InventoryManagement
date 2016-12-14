@@ -8,48 +8,39 @@ class Dealer {
     //create or add product item
     app.post('/dealer/create', function(req, res) {
       var dealerInfo = {'name': req.body.name,'address': req.body.address,'city': req.body.city,'phone': req.body.phone ,'email':req.body.email};
-      service.insert(dbCon, dealerInfo, function(err, result) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Dealer added successfully ' + `Dealer ID is ${result.insertId}`);
-      });
+      service.insert(dbCon, dealerInfo)
+      .then(result => res.send(`Dealer ${result.insertId} added successfully`))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //delete product by id
     app.post('/dealer/delete/:id', function(req, res) {
       var data = req.params.id;
-      service.deleteRow(dbCon, data, function(err) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item deleted successfuly');
-      });
+      service.deleteRow(dbCon, data)
+      .then(() => res.send('Item deleted successfuly'))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //update product by id
     app.post('/dealer/update/:id', function(req, res) {
       var product = {'name': req.body.name,'address': req.body.address,'city': req.body.city,'phone': req.body.phone ,'email':req.body.email, 'dealer_id': req.params.id};
-      service.update(dbCon, product, function(err, result) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item updated sucessfully ' + result.changedRows);
-      });
+      service.update(dbCon, product)
+      .then(() => res.send('Item updated successfuly'))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all products
     app.get('/dealer', function(req, res) {
-      service.list(dbCon, function(err, result) {
-        if (err) {
-          res.send('Something went wrong', 500);
-        }
-        res.send(result);
-      });
+      service.list(dbCon)
+      .then(result => res.send(result))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get dealer by id
     app.get('/dealer/:id', function(req, res) {
       var data = req.params.id;
-      service.getbyid(dbCon, data, function(err, result) {
-        if (err) {
-          res.send(`Something went wrong ${err}`, 500);
-        }
-        res.send(result);
-      });
+      service.getbyid(dbCon, data)
+      .then(result => res.send(result))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
   }
 

@@ -19,19 +19,17 @@ class Invoice {
         'net_amount': req.body.net_amount,
         'customer_id': req.body.customer_id
       };
-      service.insert(dbCon, invoiceInfo, function(err, result) {
-        if (err) res.send(`Something went wrong ${err}`, 500);
-        res.send('invoice added successfully ' + `invoice ID is ${result.insertId}`);
-      });
+      service.insert(dbCon, invoiceInfo)
+      .then(result => res.send(`Invoice ${result.insertId} added successfully`))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //delete invoice by id
     app.post('/invoice/delete/:id', function(req, res) {
       var data = req.params.id;
-      service.deleteRow(dbCon, data, function(err) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item deleted successfuly');
-      });
+      service.deleteRow(dbCon, data)
+      .then(() => res.send('Item deleted successfuly'))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //update invoice by id
@@ -49,30 +47,23 @@ class Invoice {
         'customer_id': req.body.customer_id,
         'invoice_id' : req.params.id
       };
-      service.update(dbCon, invoiceInfo, function(err, result) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item updated sucessfully ' + result.changedRows);
-      });
+      service.update(dbCon, invoiceInfo)
+      .then(() => res.send('Item updated successfuly'))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all product
     app.get('/invoice', function(req, res) {
-      service.list(dbCon, function(err, result) {
-        if (err) {
-          res.send('Something went wrong', 500);
-        }
-        res.send(result);
-      });
+      service.list(dbCon)
+      .then(result => res.send(result))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get invoice by id
     app.get('/invoice/:id', function(req, res) {
       var data = req.params.id;
-      service.getbyid(dbCon, data, function(err, result) {
-        if (err) {
-          res.send(`Something went wrong ${err}`, 500);
-        }
-        res.send(result);
-      });
+      service.getbyid(dbCon, data)
+      .then(result => res.send(result))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
   }
 

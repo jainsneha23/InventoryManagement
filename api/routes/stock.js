@@ -12,19 +12,17 @@ class Stock {
         'item_id': req.body.item_id,
         'quantity': req.body.quantity
       };
-      service.insert(dbCon, stockInfo, function(err, result) {
-        if (err) res.send(`Something went wrong ${err}`, 500);
-        res.send('stock added successfully ' + `stock ID is ${result.insertId}`);
-      });
+      service.insert(dbCon, stockInfo)
+        .then(result => res.send(`stock ${result.insertId} is added`))
+        .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //delete stock by id
     app.post('/stock/delete/:id', function(req, res) {
       var data = req.params.id;
-      service.deleteRow(dbCon, data, function(err) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item deleted successfuly');
-      });
+      service.deleteRow(dbCon, data)
+        .then(() => res.send('Item deleted successfuly'))
+        .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //update stock by id
@@ -34,30 +32,23 @@ class Stock {
         'item_id': req.body.item_id,
         'quantity': req.body.quantity,
       };
-      service.update(dbCon, stockInfo, function(err, result) {
-        if (err) res.send('Something went wrong', 500);
-        res.send('Item updated sucessfully ' + result.changedRows);
-      });
+      service.update(dbCon, stockInfo)
+        .then(() => res.send('Item updated successfuly'))
+        .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all product
     app.get('/stock', function(req, res) {
-      StockAggregator.list(dbCon, function(err, result) {
-        if (err) {
-          res.send('Something went wrong', 500);
-        }
-        res.send(result);
-      });
+      StockAggregator.list(dbCon)
+      .then(result => res.send(result))
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get stock by id
     app.get('/stock/:id', function(req, res) {
       var data = req.params.id;
-      service.getbyid(dbCon, data, function(err, result) {
-        if (err) {
-          res.send(`Something went wrong ${err}`, 500);
-        }
-        res.send(result);
-      });
+      service.getbyid(dbCon, data)
+        .then(result => res.send(result))
+        .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
   }
 
