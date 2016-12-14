@@ -1,7 +1,7 @@
 export default {
   headers: [{
     key: 'Access-Control-Allow-Origin',
-    value: 'http://inventoryweb-jsonly.rhcloud.com'
+    value: '*'
   }, {
     key: 'cache-control',
     value: 'no-store, no-cache'

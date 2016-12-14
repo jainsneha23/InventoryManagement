@@ -19,8 +19,8 @@ class Inventory {
       data: [data.name, data.quality, data.description, data.unit, data.item_id]
     }, callback);
   }
-  list(dbCon, callback) {
-    this.query.list(dbCon, this.table, callback);
+  list(dbCon) {
+    return this.query.list(dbCon, this.table);
   }
   getbyid(dbCon, data, callback) {
     this.query.getbyid(dbCon, this.table, 'item_id', data, callback);

@@ -33,12 +33,11 @@ class Inventory {
     });
     //get list of all products
     app.get('/product', function(req, res) {
-      service.list(dbCon, function(err, result) {
-        if (err) {
-          res.send('Something went wrong', 500);
-        }
+      service.list(dbCon)
+      .then(result => {
         res.send(result);
-      });
+      })
+      .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get product by id
