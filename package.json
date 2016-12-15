@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node index.js &",
+    "start": "nohup node index.js > output.log &",
     "dev-start": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
