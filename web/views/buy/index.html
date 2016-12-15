@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Inventory List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <link rel="stylesheet" type="text/css" href="/web/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="/web/styles/form.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/header/header.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/footer/footer.css">
+  <link rel="stylesheet" type="text/css" href="/web/components/spinner/spinner.css">
+  <link rel="stylesheet" type="text/css" href="/web/views/buy/index.css">
+  <script type="text/javascript" src="/web/scripts/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/web/views/buy/index.js"></script>
+</head>
+
+<body>
+  {{/web/components/header/header.html}}
+  <section>
+    {{/web/components/spinner/spinner.html}}
+    <form>
+      <div>
+        <label><span>Date</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Dealer Name</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Mobile Number</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Email</span>
+          <input type="text" name="email" />
+        </label>
+        <label><span>Company</span>
+          <input type="text" name="company" />
+        </label>
+        <label><span>PAN</span>
+          <input type="text" name="pan" />
+        </label>
+        <label><span>City</span>
+          <input type="text" name="city" />
+        </label>
+        <label><span>Address</span>
+          <textarea name="address" resizable="false" col="5"></textarea>
+        </label>
+        <label><span>Notes</span>
+          <textarea name="description" resizable="false" col="5"></textarea>
+        </label>
+        <hr>
+        <table>
+          <tr>
+            <td>
+              <label><span>Item</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Quantity</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Rate</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Total</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><span>Item</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Quantity</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Rate</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+            <td>
+              <label><span>Total</span>
+                <input type="text" name="name" />
+              </label>
+            </td>
+          </tr>
+        </table>
+        <label><span>Tax Percentage</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Tax Amount</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Discount</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Gross Amount</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Payment Method</span>
+          <input type="text" name="name" />
+        </label>
+        <label><span>Payment Status</span>
+          <input type="text" name="name" />
+        </label>
+      </div>
+      <div class="buttongroup">
+        <button type="button">Cancel</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </section>
+  {{/web/components/footer/footer.html}}
+</body>
+
+</html>
