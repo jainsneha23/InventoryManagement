@@ -18,4 +18,4 @@ deploy:
   app: sales
   domain: jsonly
   on:
-    repo: snehatulsi/InventoryManagement
+    repo: sales

@@ -14,6 +14,8 @@ const ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const app = express();
 const dbCon = dbConnection();
 
+const env = port === 3000 ? 'dev' : 'prod';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -21,21 +23,28 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send(template.compile(path.join(__dirname, '../web/index.html')));
-});
+if(env === 'dev') {
+  app.get('/', (req, res) => {
+    res.send(template.compile(path.join(__dirname, '../web/index.html')));
+  });
 
-app.get('/*-page', (req, res) => {
-  res.send(template.compile(path.join(__dirname, '../web/index.html')));
-});
+  app.get('/*-page', (req, res) => {
+    res.send(template.compile(path.join(__dirname, '../web/index.html')));
+  });
+
+  app.use(express.static('web'));
+} else {
+  app.get('/', (req, res) => {
+    res.send(template.compile(path.join(__dirname, '../web/build/bundled/index.html')));
+  });
+
+  app.get('/*-page', (req, res) => {
+    res.send(template.compile(path.join(__dirname, '../web/build/bundled/index.html')));
+  });
+  app.use(express.static('web/build/bundled'));
+}
 
 Routes.insertRoutes(app, dbCon);
-
-/*app.get('/views/*', (req, res) => {
-  res.send(template.compile(path.join(__dirname, `../web/${req.url}/index.html`)));
-});*/
-
-app.use(express.static('web'));
 
 app.use((req, res) => {
   res.send('Invalid request', 404);
