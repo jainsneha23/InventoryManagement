@@ -8,7 +8,7 @@ before_script:
 - cd web
 - bower install
 script:
-- xvfb-run polymer test
+- polymer build
 deploy:
   provider: openshift
   user: mystery.sneha@gmail.com
