@@ -25,13 +25,17 @@ app.get('/', (req, res) => {
   res.send(template.compile(path.join(__dirname, '../web/index.html')));
 });
 
-Routes.insertRoutes(app, dbCon);
-
-app.get('/views/*', (req, res) => {
-  res.send(template.compile(path.join(__dirname, `../web/${req.url}/index.html`)));
+app.get('/*-page', (req, res) => {
+  res.send(template.compile(path.join(__dirname, '../web/index.html')));
 });
 
-app.use('/web', express.static('web'));
+Routes.insertRoutes(app, dbCon);
+
+/*app.get('/views/*', (req, res) => {
+  res.send(template.compile(path.join(__dirname, `../web/${req.url}/index.html`)));
+});*/
+
+app.use(express.static('web'));
 
 app.use((req, res) => {
   res.send('Invalid request', 404);
