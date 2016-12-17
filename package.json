@@ -5,8 +5,7 @@
   "scripts": {
     "test": "test",
     "postinstall": "cd web && export HOME=$HOME/app-root/runtime/repo; ../node_modules/bower/bin/bower install && ../node_modules/.bin/polymer build",
-    "server": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
-    "start": "npm run polymer-build && npm run server",
+    "start": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
