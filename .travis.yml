@@ -9,7 +9,6 @@ before_script:
 - bower install
 script:
 - polymer build
-- npm run server
 deploy:
   provider: openshift
   user: mystery.sneha@gmail.com
@@ -18,4 +17,4 @@ deploy:
   app: sales
   domain: jsonly
   on:
-    repo: sales
+    repo: snehatulsi/InventoryManagement
