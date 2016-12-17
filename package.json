@@ -4,7 +4,7 @@
   "description": "inventory,sales,reports,stock,bill",
   "scripts": {
     "test": "test",
-    "preinstall": "npm install -g bower polymer-cli",
+    "preinstall": "npm install bower polymer-cli",
     "polymer-build": "cd web && bower install && polymer build",
     "server": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "start": "npm run polymer-build && npm run server",
