@@ -35,13 +35,13 @@ if(env === 'dev') {
   app.use(express.static('web'));
 } else {
   app.get('/', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/build/bundled/index.html')));
+    res.send(template.compile(path.join(__dirname, '../web/build/unbundled/index.html')));
   });
 
   app.get('/*-page', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/build/bundled/index.html')));
+    res.send(template.compile(path.join(__dirname, '../web/build/unbundled/index.html')));
   });
-  app.use(express.static('web/build/bundled'));
+  app.use(express.static('web/build/unbundled'));
 }
 
 Routes.insertRoutes(app, dbCon);
