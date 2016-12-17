@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "polymer-build": "cd web && polymer build",
-    "server": "nohup node index.js > output.log &",
+    "server": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "start": "npm run polymer-build && npm run server",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
