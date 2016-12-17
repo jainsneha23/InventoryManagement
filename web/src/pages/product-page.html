@@ -64,7 +64,7 @@
     deleteSelected: function() {
       var self = this;
       this.selectedIds.forEach(function(id) {
-        ajaxCall('POST', '/product/delete/'+id).then(function(res) {
+        ajaxCall('POST', '/api/product/delete/'+id).then(function(res) {
           self.$.datatableCard.retrieveVisibleData();
           self.$.datatableCard.deselectAll();
         });
@@ -84,7 +84,7 @@
     },
     _dataSource: {
       get: function() {
-        return ajaxCall('GET', '/product', null, 'json');
+        return ajaxCall('GET', '/api/product', null, 'json');
       }
     }
   });

@@ -6,7 +6,7 @@ class Dealer {
 
     const service = new DealerService();
     //create or add product item
-    app.post('/dealer/create', function(req, res) {
+    app.post('/api/dealer/create', function(req, res) {
       var dealerInfo = {'name': req.body.name,'address': req.body.address,'city': req.body.city,'phone': req.body.phone ,'email':req.body.email};
       service.insert(dbCon, dealerInfo)
       .then(result => res.send(`Dealer ${result.insertId} added successfully`))
@@ -14,7 +14,7 @@ class Dealer {
     });
 
     //delete product by id
-    app.post('/dealer/delete/:id', function(req, res) {
+    app.post('/api/dealer/delete/:id', function(req, res) {
       var data = req.params.id;
       service.deleteRow(dbCon, data)
       .then(() => res.send('Item deleted successfuly'))
@@ -22,21 +22,21 @@ class Dealer {
     });
 
     //update product by id
-    app.post('/dealer/update/:id', function(req, res) {
+    app.post('/api/dealer/update/:id', function(req, res) {
       var product = {'name': req.body.name,'address': req.body.address,'city': req.body.city,'phone': req.body.phone ,'email':req.body.email, 'dealer_id': req.params.id};
       service.update(dbCon, product)
       .then(() => res.send('Item updated successfuly'))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all products
-    app.get('/dealer', function(req, res) {
+    app.get('/api/dealer', function(req, res) {
       service.list(dbCon)
       .then(result => res.send(result))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get dealer by id
-    app.get('/dealer/:id', function(req, res) {
+    app.get('/api/dealer/:id', function(req, res) {
       var data = req.params.id;
       service.getbyid(dbCon, data)
       .then(result => res.send(result))

@@ -7,7 +7,7 @@ class Stock {
 
     const service = new StockService();
     //create or add stock
-    app.post('/stock/create', function(req, res) {
+    app.post('/api/stock/create', function(req, res) {
       var stockInfo = {
         'item_id': req.body.item_id,
         'quantity': req.body.quantity
@@ -18,7 +18,7 @@ class Stock {
     });
 
     //delete stock by id
-    app.post('/stock/delete/:id', function(req, res) {
+    app.post('/api/stock/delete/:id', function(req, res) {
       var data = req.params.id;
       service.deleteRow(dbCon, data)
         .then(() => res.send('Item deleted successfuly'))
@@ -26,7 +26,7 @@ class Stock {
     });
 
     //update stock by id
-    app.post('/stock/update/:id', function(req, res) {
+    app.post('/api/stock/update/:id', function(req, res) {
       var stockInfo = {
         'stock_id': req.params.id,
         'item_id': req.body.item_id,
@@ -37,14 +37,14 @@ class Stock {
         .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all product
-    app.get('/stock', function(req, res) {
+    app.get('/api/stock', function(req, res) {
       StockAggregator.list(dbCon)
       .then(result => res.send(result))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get stock by id
-    app.get('/stock/:id', function(req, res) {
+    app.get('/api/stock/:id', function(req, res) {
       var data = req.params.id;
       service.getbyid(dbCon, data)
         .then(result => res.send(result))

@@ -75,10 +75,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer>
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="product-page" href="/product-page">Product</a>
-          <a name="stock" href="/stock-page">Stock</a>
-          <a name="dealer" href="/dealer-page">Dealer</a>
-          <a name="customer" href="/customer-page">Customer</a>
+          <a name="product-page" href="/product">Product</a>
+          <a name="stock" href="/stock">Stock</a>
+          <a name="dealer" href="/dealer">Dealer</a>
+          <a name="customer" href="/customer">Customer</a>
         </iron-selector>
       </app-drawer>
 
@@ -97,10 +97,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <product-page name="product-page"></product-page>
-          <stock-page name="stock-page"></stock-page>
-          <dealer-page name="dealer-page"></dealer-page>
-          <customer-page name="customer-page"></customer-page>
+          <product-page name="product"></product-page>
+          <stock-page name="stock"></stock-page>
+          <dealer-page name="dealer"></dealer-page>
+          <customer-page name="customer"></customer-page>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -124,12 +124,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'product-page';
+        this.page = page || 'product';
       },
 
       _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('pages/' + page + '.html');
+        var resolvedPageUrl = this.resolveUrl('pages/' + page + '-page.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
 

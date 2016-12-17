@@ -6,7 +6,7 @@ class Invoice {
 
     const service = new InvoiceService();
     //create or add invoice
-    app.post('/invoice/create', function(req, res) {
+    app.post('/api/invoice/create', function(req, res) {
       var invoiceInfo = {
         'date': req.body.date,
         'pay_type': req.body.pay_type,
@@ -25,7 +25,7 @@ class Invoice {
     });
 
     //delete invoice by id
-    app.post('/invoice/delete/:id', function(req, res) {
+    app.post('/api/invoice/delete/:id', function(req, res) {
       var data = req.params.id;
       service.deleteRow(dbCon, data)
       .then(() => res.send('Item deleted successfuly'))
@@ -33,7 +33,7 @@ class Invoice {
     });
 
     //update invoice by id
-    app.post('/invoice/update/:id', function(req, res) {
+    app.post('/api/invoice/update/:id', function(req, res) {
       var invoiceInfo = {
         'date': req.body.date,
         'pay_type': req.body.pay_type,
@@ -52,14 +52,14 @@ class Invoice {
       .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
     //get list of all product
-    app.get('/invoice', function(req, res) {
+    app.get('/api/invoice', function(req, res) {
       service.list(dbCon)
       .then(result => res.send(result))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
     });
 
     //get invoice by id
-    app.get('/invoice/:id', function(req, res) {
+    app.get('/api/invoice/:id', function(req, res) {
       var data = req.params.id;
       service.getbyid(dbCon, data)
       .then(result => res.send(result))

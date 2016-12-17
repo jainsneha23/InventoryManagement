@@ -23,31 +23,22 @@ app.use((req, res, next) => {
   next();
 });
 
+Routes.insertRoutes(app, dbCon);
+
 if(env === 'dev') {
   app.get('/', (req, res) => {
     res.send(template.compile(path.join(__dirname, '../web/index.html')));
   });
-
-  app.get('/*-page', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/index.html')));
-  });
-
   app.use(express.static('web'));
 } else {
   app.get('/', (req, res) => {
     res.send(template.compile(path.join(__dirname, '../web/build/unbundled/index.html')));
   });
-
-  app.get('/*-page', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/build/unbundled/index.html')));
-  });
   app.use(express.static('web/build/unbundled'));
 }
 
-Routes.insertRoutes(app, dbCon);
-
 app.use((req, res) => {
-  res.send('Invalid request', 404);
+  res.send('Page not found', 404);
 });
 
 app.use((err, req, res) => {
