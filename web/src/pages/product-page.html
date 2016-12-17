@@ -63,8 +63,8 @@
     },
     deleteSelected: function() {
       var self = this;
-      this.selectedIds.forEach((id) => {
-        ajaxCall('POST', `/product/delete/${id}`).then(function(res) {
+      this.selectedIds.forEach(function(id) {
+        ajaxCall('POST', '/product/delete/'+id).then(function(res) {
           self.$.datatableCard.retrieveVisibleData();
           self.$.datatableCard.deselectAll();
         });

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "nohup node index.js > output.log &",
-    "dev-start": "./node_modules/.bin/babel-watch server/index.js",
+    "polymer-build": "cd web && polymer build",
+    "server": "nohup node index.js > output.log &",
+    "start": "npm run polymer-build && npm run server",
+    "dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
   },
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "babel-watch": "^2.0.4",
-    "eslint": "^3.5.0"
+    "eslint": "^3.5.0",
+    "polymer": "^0.5.0"
   }
 }
