@@ -4,8 +4,7 @@
   "description": "inventory,sales,reports,stock,bill",
   "scripts": {
     "test": "test",
-    "preinstall": "npm install bower polymer-cli",
-    "polymer-build": "cd web && bower install && polymer build",
+    "postinstall": "cd web && ./node_modules/.bin/bower install && ./node_modules/.bin/polymer build",
     "server": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "start": "npm run polymer-build && npm run server",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
@@ -35,7 +34,6 @@
   },
   "devDependencies": {
     "babel-watch": "^2.0.4",
-    "eslint": "^3.5.0",
-    "polymer": "^0.5.0"
+    "eslint": "^3.5.0"
   }
 }
