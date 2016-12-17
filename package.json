@@ -4,7 +4,7 @@
   "description": "inventory,sales,reports,stock,bill",
   "scripts": {
     "test": "test",
-    "install": "npm install -g bower polymer",
+    "install": "npm install -g bower polymer-cli",
     "postinstall": "cd web && export HOME=$HOME/app-root/runtime/repo; bower install -s && polymer build",
     "start": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
