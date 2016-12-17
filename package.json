@@ -2,9 +2,9 @@
   "name": "inventory-management",
   "version": "1.0.0",
   "description": "inventory,sales,reports,stock,bill",
-  "main": "index.js",
   "scripts": {
     "test": "test",
+    "preinstall": "npm install bower polymer-cli",
     "polymer-build": "cd web && bower install && polymer build",
     "server": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "start": "npm run polymer-build && npm run server",
@@ -12,6 +12,7 @@
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
   },
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snehatulsi/InventoryManagement.git"
