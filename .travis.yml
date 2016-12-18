@@ -1,8 +1,9 @@
 language: node_js
 node_js:
-- '6'
-before_script:
-script:
+  - '6'
+install: true
+# before_script:
+# script:
 deploy:
   provider: openshift
   user: mystery.sneha@gmail.com
