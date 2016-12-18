@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "install": "npm install -g bower polymer-cli",
     "postinstall": "cd web && export HOME=$HOME/app-root/runtime/repo; bower install -s && polymer build",
-    "start": "node index.js",
+    "start": "BABEL_DISABLE_CACHE=1 node index.js",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
