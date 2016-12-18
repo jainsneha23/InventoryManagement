@@ -2,11 +2,7 @@ language: node_js
 node_js:
 - '6'
 before_script:
-- npm install -g bower polymer-cli
-- cd web
-- bower install
 script:
-- polymer build
 deploy:
   provider: openshift
   user: mystery.sneha@gmail.com
