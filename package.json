@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "install": "npm install -g bower polymer-cli",
     "postinstall": "cd web && export HOME=$HOME/app-root/runtime/repo; bower install -s && polymer build",
-    "start": "BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
+    "start": "BABEL_CACHE_PATH='/var/lib/openshift/584d2e150c1e66baec00017b/app-root/repo/.cache/.babel.json' BABEL_DISABLE_CACHE=1 nohup node index.js > output.log &",
     "dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
     "lint:watch": "npm run lint -- --watch"
