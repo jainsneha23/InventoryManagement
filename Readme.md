@@ -6,3 +6,4 @@ Inventory
 Sales
 Invoices
 Stock
+Reports
