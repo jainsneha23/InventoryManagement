@@ -18,7 +18,21 @@ export default {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    stats: {
+      colors: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      errors: true,
+      errorDetails: true,
+      warnings: false
+    }
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
