@@ -4,8 +4,10 @@ import path from 'path';
 
 import dbConnection from '../api/sp-node-mysql/app.js';
 import Routes from '../api/routes';
-import template from './template';
 import config from './config';
+
+import webpack from 'webpack';
+import webpackConfig from '../web/webpack.dev';
 
 /* eslint-disable no-console */
 
@@ -14,7 +16,7 @@ const ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const app = express();
 const dbCon = dbConnection();
 
-const env = port === 3000 ? 'dev' : 'prod';
+const env = process.env.NODE_ENV || (port === 3000 ? 'development' : 'production');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,17 +27,17 @@ app.use((req, res, next) => {
 
 Routes.insertRoutes(app, dbCon);
 
-if(env === 'dev') {
-  app.get('/', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/index.html')));
-  });
-  app.use(express.static('web'));
-} else {
-  app.get('/', (req, res) => {
-    res.send(template.compile(path.join(__dirname, '../web/build/unbundled/index.html')));
-  });
-  app.use(express.static('web/build/unbundled'));
+if (env === 'development') {
+  const compiler = webpack(webpackConfig);
+  app.use(require('webpack-dev-middleware')(compiler, {}));
+  app.use(require('webpack-hot-middleware')(compiler));
 }
+
+app.use(express.static('dist'));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../web/index.html'));
+});
 
 app.use((req, res) => {
   res.send('Page not found', 404);
