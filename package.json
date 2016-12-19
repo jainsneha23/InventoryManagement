@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "postinstall": "npm run webpack",
-    "start": "NODE_ENV=production BABEL_ENV=production node index.js",
-    "webpack": "NODE_ENV=production BABEL_ENV=production ./node_modules/.bin/babel-node ./node_modules/.bin/webpack --config web/webpack.prod.js",
+    "start": "node index.js",
+    "webpack": "./node_modules/.bin/babel-node ./node_modules/.bin/webpack --config web/webpack.prod.js",
     "web-dev": "NODE_ENV=development BABEL_ENV=development node index.js",
     "app-dev": "./node_modules/.bin/babel-watch server/index.js",
     "lint": "node_modules/.bin/eslint src server web",
