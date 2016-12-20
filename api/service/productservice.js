@@ -14,7 +14,7 @@ class Product {
   update(dbCon, data) {
     return this.query.update(dbCon, {
       table: this.table,
-      query: 'name = ?,quality= ?, description=?, unit= ?',
+      query: 'name = ?, description=?, unit= ?',
       uid: 'item_id',
       data: [data.name, data.quality, data.description, data.unit, data.item_id]
     });
