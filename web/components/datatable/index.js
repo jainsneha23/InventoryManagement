@@ -4,20 +4,23 @@ import AppBar from 'material-ui/AppBar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentCreate from 'material-ui/svg-icons/content/create';
-import AddData from './addData';
-import DeleteData from './deleteData';
+import EditDialog from './edit-dialog';
+import ConfirmDialog from './confirm-dialog';
 import Datatable from './datatable';
 
 class DatatableCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAddMode: false,
-      selectedRow: -1
+      openEditDialog: false,
+      selectedRow: -1,
+      isEditMode: false,
+      columns: [...this.props.columns]
     };
-    this.toggleAddClick = this.toggleAddClick.bind(this);
+    this.toggleEditClick = this.toggleEditClick.bind(this);
     this.onRowSelection = this.onRowSelection.bind(this);
     this.onRowDelete = this.onRowDelete.bind(this);
+    this.doneEditing = this.doneEditing.bind(this);
   }
 
   onRowSelection(idx) {
@@ -26,39 +29,54 @@ class DatatableCard extends React.Component {
     });
   }
 
-  toggleAddClick(rowvalue) {
-    this.setState({isAddMode: !this.state.isAddMode});
-    if (rowvalue) this.props.addItem(rowvalue);
+  doneEditing(rowvalue) {
+    if(!rowvalue) {
+      const columns = this.state.columns.map((column) => {delete column.value;return column;});
+      this.setState({columns, openEditDialog: false});
+    }
+    this.props.editItem(rowvalue, this.state.isEditMode)
+    .then(() => {
+      const columns = this.state.columns.map((column) => {delete column.value;return column;});
+      this.setState({columns, openEditDialog: false});
+    });
   }
 
-  toggleEditClick() {
-
+  toggleEditClick(opts) {
+    if (opts && opts.edit) {
+      const columns = this.state.columns.map((column) => {
+        column.value = this.props.data[this.state.selectedRow][column.key];
+        return column;
+      });
+      this.setState({columns, isEditMode: true});
+    }
+    this.setState({openEditDialog: true});
   }
 
-  onRowDelete(id) {
+  onRowDelete() {
+    this.props.deleteItem(this.state.selectedRow);
     this.setState({selectedRow: -1});
-    this.props.deleteItem(id);
   }
 
   render () {
     return (
       <div>
-        <AddData
-          open={this.state.isAddMode}
-          columns={this.props.columns}
-          onClose={this.toggleAddClick} />
+        <EditDialog
+          open={this.state.openEditDialog}
+          columns={this.state.columns}
+          onClose={this.doneEditing} />
         <AppBar
-          style={{color: '#00bcd4', backgroundColor: '#fff'}}
+          style={{backgroundColor: '#fff'}}
+          titleStyle={{color: '#00bcd4'}}
           title={this.props.header}
           iconElementLeft={
-              <FloatingActionButton mini={true} onClick={() => this.toggleAddClick()}>
+              <FloatingActionButton mini={true} onClick={() => this.toggleEditClick()}>
                 <ContentAdd />
               </FloatingActionButton>}
           iconElementRight={
             this.state.selectedRow !== -1 ?
                 <div>
-                  <DeleteData deleteId={this.state.selectedRow} onConfirmDelete={this.onRowDelete}/>
-                  <FloatingActionButton mini={true} onClick={() => this.toggleEditClick()} style={{marginLeft: '12px'}}>
+                  <ConfirmDialog onConfirmDelete={this.onRowDelete}/>
+                  <FloatingActionButton mini={true} onClick={() => this.toggleEditClick({edit: true})} style={{marginLeft: '12px'}}>
                     <ContentCreate />
                   </FloatingActionButton>
                 </div> : null }
@@ -73,7 +91,7 @@ DatatableCard.propTypes = {
   header: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
   columns: React.PropTypes.array.isRequired,
-  addItem: React.PropTypes.func.isRequired,
+  editItem: React.PropTypes.func.isRequired,
   deleteItem: React.PropTypes.func.isRequired
 };
 

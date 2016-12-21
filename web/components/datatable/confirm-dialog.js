@@ -4,7 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FlatButton from 'material-ui/FlatButton';
 import ContentDelete from 'material-ui/svg-icons/content/delete-sweep';
 
-class DeleteData extends React.Component {
+class ConfirmDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +33,7 @@ class DeleteData extends React.Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={() => this.props.onConfirmDelete(this.props.deleteId)}
+        onTouchTap={this.props.onConfirmDelete}
       />,
     ];
     return (
@@ -54,9 +54,8 @@ class DeleteData extends React.Component {
   }
 }
 
-DeleteData.propTypes = {
-  deleteId: React.PropTypes.number.isRequired,
+ConfirmDialog.propTypes = {
   onConfirmDelete: React.PropTypes.func.isRequired
 };
 
-export default DeleteData;
+export default ConfirmDialog;

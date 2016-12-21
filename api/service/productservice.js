@@ -16,7 +16,7 @@ class Product {
       table: this.table,
       query: 'name = ?, description=?, unit= ?',
       uid: 'item_id',
-      data: [data.name, data.quality, data.description, data.unit, data.item_id]
+      data: [data.name, data.description, data.unit, data.item_id]
     });
   }
   list(dbCon) {

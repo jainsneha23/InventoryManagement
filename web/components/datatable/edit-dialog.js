@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-class AddData extends React.Component {
+class EditDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,7 +64,7 @@ class AddData extends React.Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={() => this.props.onClose(this.state.columns)}
+        onTouchTap={() => this.props.onClose([...this.state.columns])}
       />,
     ];
     return (
@@ -89,10 +89,10 @@ class AddData extends React.Component {
   }
 }
 
-AddData.propTypes = {
+EditDialog.propTypes = {
   open: React.PropTypes.bool.isRequired,
   columns: React.PropTypes.array.isRequired,
   onClose: React.PropTypes.func.isRequired
 };
 
-export default AddData;
+export default EditDialog;
