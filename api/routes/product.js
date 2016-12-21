@@ -7,7 +7,7 @@ class Product {
     const service = new ProductService();
     //create or add product item
     app.post('/api/product/create', function(req, res) {
-      var inventory = { 'name': req.query.name, 'quality': req.query.quality, 'description': req.query.description, 'unit': req.query.unit };
+      var inventory = { 'name': req.body.name, 'description': req.body.description, 'unit': req.body.unit };
       service.insert(dbCon, inventory)
       .then(result => res.send(`Item ${result.insertId} added successfully`))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
@@ -23,7 +23,7 @@ class Product {
 
     //update product by id
     app.post('/api/product/update/:id', function(req, res) {
-      var product = { 'item_id': req.params.id, 'name': req.body.name, 'quality': req.body.quality, 'description': req.body.description, 'unit': req.body.unit };
+      var product = { 'item_id': req.params.id, 'name': req.body.name, 'description': req.body.description, 'unit': req.body.unit };
       service.update(dbCon, product)
       .then(result => res.send(`Item updated sucessfully ${result.changedRows}`))
       .catch(err => res.send(`Something went wrong ${err}`, 500));
