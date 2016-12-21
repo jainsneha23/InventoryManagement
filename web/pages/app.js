@@ -45,6 +45,12 @@ class App extends React.Component {
             <MenuItem onTouchTap={this.toggleDrawer} innerDivStyle={menuStyle}>
               <Link to="/customer" style={linkStyle}>Customer</Link>
             </MenuItem>
+            <MenuItem onTouchTap={this.toggleDrawer} innerDivStyle={menuStyle}>
+              <Link to="/dealer" style={linkStyle}>Dealer</Link>
+            </MenuItem>
+            <MenuItem onTouchTap={this.toggleDrawer} innerDivStyle={menuStyle}>
+              <Link to="/stock" style={linkStyle}>Stock</Link>
+            </MenuItem>
           </Drawer>
          {this.props.children}
         </div>

@@ -2,9 +2,9 @@ import React from 'react';
 
 import CrudPage from '../components/crud-page/';
 
-const Customer = () => {
+const Dealer = () => {
   const columns = [
-    { key: 'customer_id', header: 'ID', type: 'number', editable: false, primary: true},
+    { key: 'delaer_id', header: 'ID', type: 'number', editable: false, primary: true},
     { key: 'name', header: 'Name', type: 'string' },
     { key: 'phone', header: 'Phone', type: 'phone' },
     { key: 'email', header: 'Email', type: 'email' },
@@ -17,13 +17,13 @@ const Customer = () => {
   return (
     <div>
       <CrudPage
-        header={'Customer'}
+        header={'Dealer'}
         columns={columns}
-        apiUrl={'/api/customer'}
+        apiUrl={'/api/dealer'}
       />
     </div>
   );
 };
 
-export default Customer;
+export default Dealer;
 
