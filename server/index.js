@@ -16,7 +16,7 @@ const ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const app = express();
 const dbCon = dbConnection();
 
-const env = process.env.NODE_ENV || (port === 3000 ? 'development' : 'production');
+const env = port === 3000 ? 'development' : 'production';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
